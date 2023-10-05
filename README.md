@@ -135,3 +135,13 @@ or
 
 
 ```
+
+
+
+## References
+
+- [OpenSTA GitHub Repository](https://github.com/The-OpenROAD-Project/OpenSTA.git)
+- [kunalg123 GitHub Profile](https://github.com/kunalg123)
+- [VSDIAT Official Website](https://www.vsdiat.com)
+- [RISCV-GNU GitHub Repository by Saketh Gajawada](https://github.com/SakethGajawada/RISCV-GNU)
+
