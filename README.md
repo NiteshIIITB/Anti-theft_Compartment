@@ -2,8 +2,8 @@
 
 <h2>Block Diagram</h2>
 <div>
-	<img src="<img width="669" alt="Screenshot 2023-10-06 at 12 47 39 AM" src="https://github.com/NiteshIIITB/Anti-theft_Compartment/assets/140998787/3d857054-9e97-4d45-b923-02434353f34d">
-">
+	<img src="https://github.com/NiteshIIITB/Anti-theft_Compartment/assets/140998787/3d857054-9e97-4d45-b923-02434353f34d">
+
 </div>
 
 
