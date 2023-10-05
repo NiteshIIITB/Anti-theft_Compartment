@@ -136,6 +136,9 @@ or
 
 ```
 
+## Word of Thanks
+
+I would like to sincerely thank Mr. Kunal Gosh, Founder of VSD (VLSI System Design), for his invaluable assistance and guidance, which played a pivotal role in ensuring the smooth completion of this project flow.
 
 
 ## References
