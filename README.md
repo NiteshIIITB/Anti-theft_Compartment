@@ -1,5 +1,11 @@
 # Anti-theft_Compartment
 
+<h2>Block Diagram</h2>
+<div>
+	<img src="<img width="669" alt="Screenshot 2023-10-06 at 12 47 39 AM" src="https://github.com/NiteshIIITB/Anti-theft_Compartment/assets/140998787/3d857054-9e97-4d45-b923-02434353f34d">
+">
+</div>
+
 
 <h2>C Code</h2>
 
@@ -92,5 +98,24 @@ Disassembly of section .text:
   58:	01c12403          	lw	s0,28(sp)
   5c:	02010113          	add	sp,sp,32
   60:	00008067          	ret
+
+```
+
+<h2>Instructions</h2>
+
+```
+Number of different instructions: 10
+List of unique instructions:
+sw
+j
+li
+ret
+beqz
+mv
+lw
+add
+and
+or
+
 
 ```
