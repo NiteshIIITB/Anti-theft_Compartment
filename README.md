@@ -27,50 +27,48 @@ The Anti-Theft Compartment project is a comprehensive security solution designed
 
 ```
 
-int main()  {
 
-    
+int main()  {
     int light_sensor;
     int buzzer;
     int buff;
+  //  int input = 0xFFFFFFF0;
     
-    
-        while(1) {
+     {
         // Read sensor data into x30
-	asm (
-            "and %0, x30, 1"
+        asm (
+            
+            "andi %0, x30, 1"
             : "=r"(light_sensor)
+             
         );
 
-       
-        
-
-        
         if (light_sensor) {
-            // If light sensor output is 1 turn on buzzer
-            buff =0xFFFFFFFD;
-            asm(
-            "and x30,x30, %0\n\t"     // Making 2nd bit from lsb0
-            "or %1, x30,2"                 // output at 2nd bit that turn on buzzer
-            :"=r"(buff)
-            :"r"(buzzer)
-        );
-        } 
-        else {
-            // If light sensor output is 0 turn off the buzzer
-            buff =0xFFFFFFFD;
-            asm(
-            "and x30,x30, %0\n\t"     
-            "or %1, x30,0"            //Making 2nd bit from lsb(output) as 0
-            :"=r"(buff)
-            :"r"(buzzer)
-        );
+            // If light sensor output is 1, turn on buzzer
+            buff = 0xFFFFFFFD;
+            asm (
+                "and x30, x30, %1\n\t"     // Clear the 2nd bit from lsb
+                "ori x30, x30, 2\n\t" // Check if 2nd bit is set
+                "andi %0, x30, 2"
+                : "=r"(buzzer)
+                : "r"(buff)
+            );
+        } else {
+            // If light sensor output is 0, turn off the buzzer
+            buff = 0xFFFFFFFD;
+            asm (
+                "and x30, x30, %1\n\t"     // Clear the 2nd bit from lsb
+                "and %0,  x30, 2"
+                : "=r"(buzzer)
+                : "r"(buff)
+              
+            );
         }
+    }
+    
+   
     return 0;
 }
-
-}
-
 
 
 ```
@@ -78,8 +76,6 @@ int main()  {
 <h2>Assembly Code</h2>
 
 ```
-
-
 out:     file format elf32-littleriscv
 
 
@@ -92,25 +88,26 @@ Disassembly of section .text:
    10060:	001f7793          	andi	a5,t5,1
    10064:	fef42623          	sw	a5,-20(s0)
    10068:	fec42783          	lw	a5,-20(s0)
-   1006c:	02078063          	beqz	a5,1008c <main+0x38>
+   1006c:	02078263          	beqz	a5,10090 <main+0x3c>
    10070:	ffd00793          	li	a5,-3
    10074:	fef42423          	sw	a5,-24(s0)
-   10078:	fe442783          	lw	a5,-28(s0)
+   10078:	fe842783          	lw	a5,-24(s0)
    1007c:	00ff7f33          	and	t5,t5,a5
-   10080:	002f6793          	ori	a5,t5,2
-   10084:	fef42423          	sw	a5,-24(s0)
-   10088:	01c0006f          	j	100a4 <main+0x50>
-   1008c:	ffd00793          	li	a5,-3
-   10090:	fef42423          	sw	a5,-24(s0)
-   10094:	fe442783          	lw	a5,-28(s0)
-   10098:	00ff7f33          	and	t5,t5,a5
-   1009c:	000f6793          	ori	a5,t5,0
-   100a0:	fef42423          	sw	a5,-24(s0)
-   100a4:	00000793          	li	a5,0
-   100a8:	00078513          	mv	a0,a5
-   100ac:	01c12403          	lw	s0,28(sp)
-   100b0:	02010113          	addi	sp,sp,32
-   100b4:	00008067          	ret
+   10080:	002f6f13          	ori	t5,t5,2
+   10084:	002f7793          	andi	a5,t5,2
+   10088:	fef42223          	sw	a5,-28(s0)
+   1008c:	01c0006f          	j	100a8 <main+0x54>
+   10090:	ffd00793          	li	a5,-3
+   10094:	fef42423          	sw	a5,-24(s0)
+   10098:	fe842783          	lw	a5,-24(s0)
+   1009c:	00ff7f33          	and	t5,t5,a5
+   100a0:	002f7793          	andi	a5,t5,2
+   100a4:	fef42223          	sw	a5,-28(s0)
+   100a8:	00000793          	li	a5,0
+   100ac:	00078513          	mv	a0,a5
+   100b0:	01c12403          	lw	s0,28(sp)
+   100b4:	02010113          	addi	sp,sp,32
+   100b8:	00008067          	ret
 
 ```
 
@@ -133,6 +130,77 @@ sw
 
 
 ```
+
+## Spike Simulation
+### Modified C code
+
+In this code I have manually changed the value of input (which will be controlled externally in ic) and observed the corresponding values of output through spike.
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()  {
+    int light_sensor;
+    int buzzer;
+    int buff;
+    int input = 0xFFFFFFF1;
+    
+     {
+        // Read sensor data into x30
+        asm (
+            "and x30, %1, %2\n\t"
+            "andi %0, x30, 1"
+            : "=r"(light_sensor)
+            : "r"(input), "r"(0xFFFFFFFF)
+        );
+
+        if (light_sensor) {
+            // If light sensor output is 1, turn on buzzer
+            buff = 0xFFFFFFFD;
+            asm (
+                "and x30, x30, %1\n\t"     // Clear the 2nd bit from lsb
+                "ori x30, x30, 2\n\t" // Check if 2nd bit is set
+                "andi %0, x30, 2"
+                : "=r"(buzzer)
+                : "r"(buff)
+            );
+        } else {
+            // If light sensor output is 0, turn off the buzzer
+            buff = 0xFFFFFFFD;
+            asm (
+                "and x30, x30, %1\n\t"     // Clear the 2nd bit from lsb
+                "and %0,  x30, 2"
+                : "=r"(buzzer)
+                : "r"(buff)
+              
+            );
+        }
+    }
+    
+    if (buzzer==2){printf("buzzer is on, Value of buzzer is %d \n",buzzer);}
+    else{printf("buzzer is off, Value of buzzer is %d \n",buzzer);}
+    return 0;
+}
+
+
+```
+
+### Spike output
+When input is 1 to temp_sensor.
+<div>
+	<img src= https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/2e9871ac-6e0a-4698-aaff-55c275c66bfe>
+
+</div>
+
+<br>
+When input is 1 to temp_sensor.
+<div>
+	<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/e82aa641-7bac-478f-a171-662f50569bf3">
+
+</div>
+
+
 
 ## Word of Thanks
 
