@@ -27,14 +27,13 @@ The Anti-Theft Compartment project is a comprehensive security solution designed
 
 ```
 
-
 int main()  {
     int light_sensor;
     int buzzer;
     int buff;
   //  int input = 0xFFFFFFF0;
     
-     {
+  while(1)   {
         // Read sensor data into x30
         asm (
             
@@ -64,18 +63,25 @@ int main()  {
               
             );
         }
+         return 0;
     }
     
    
-    return 0;
+   
 }
 
 
+
 ```
+
+
 
 <h2>Assembly Code</h2>
 
+
+
 ```
+
 out:     file format elf32-littleriscv
 
 
