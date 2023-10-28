@@ -206,6 +206,15 @@ When input is 1 to temp_sensor.
 
 </div>
 
+## Functional Verification
+<div>
+	<img src= https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/ee138bb5-2e5d-418b-830a-7b65128f3ee4 >
+	
+
+</div>
+
+
+</div>
 
 
 ## Word of Thanks
