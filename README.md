@@ -221,15 +221,15 @@ When input is 1 to temp_sensor.
 
 <br>
 <p>
-	001f7793: This line is the andi instruction. It performs a bitwise AND operation on the values of t5 and 1, storing the result in a5.At this instruction input is being read.
+	<b>001f7793:</b> This line is the andi instruction. It performs a bitwise AND operation on the values of t5 and 1, storing the result in a5.At this instruction input is being read.
 	<br>
-	02078263: This line is the beqz instruction. It branches to the memory address 10090 if the value in a5 is zero.
+	<b>02078263:</b> This line is the beqz instruction. It branches to the memory address 10090 if the value in a5 is zero.
 	<br>
-	002f6f13: This line is the ori instruction. It performs a bitwise OR operation on the values of t5 and 2, storing the result in t5.At this instruction output is set to 1.
-
-        000f0793: This line is the mv instruction. It moves the value of t5 to a5.
-
-         fef42023: This line is the sw instruction. It stores the value of a5 in the memory at an offset of -32 from s0.
+	<b>002f6f13:</b> This line is the ori instruction. It performs a bitwise OR operation on the values of t5 and 2, storing the result in t5.At this instruction output is set to 1.
+	<br>
+        <b>000f0793:</b> This line is the mv instruction. It moves the value of t5 to a5.
+	<br>
+	<b>fef42023:</b> This line is the sw instruction. It stores the value of a5 in the memory at an offset of -32 from s0.
 
         
 </p>
