@@ -213,6 +213,10 @@ When input is 1 to temp_sensor.
 
 </div>
 
+<br>
+<div>
+	<img src = "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/25d259a8-0ed3-4f7a-8257-2fe51a1390d5">
+</div>
 
 </div>
 
