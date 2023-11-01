@@ -2,7 +2,9 @@
 
 ### Project Overview
 
-The Anti-Theft Compartment project is a comprehensive security solution designed to safeguard valuable belongings from unauthorized access. This project combines hardware and software components, featuring a digital light sensor to detect intrusion and trigger an alarm. Beyond security, it presents an opportunity to explore the details of RISC-V ISA for ASIC implementation.
+The Anti-Theft Compartment project is a comprehensive security solution designed to safeguard valuable belongings from unauthorized access. This project combines hardware and software components, featuring a digital light sensor to detect intrusion and trigger an alarm. Beyond security, it presents an opportunity to explore the details of RISC-V ISA for ASIC implementation. 
+
+
 
 ### Key Features
 
@@ -235,6 +237,39 @@ When input is 1 to temp_sensor.
 </p>
 </div>
 
+## GLS
+
+GLS typically stands for "Gate Level Simulation." It is a method used in digital design and verification to simulate the behavior of the synthesized netlist or gate-level representation of a design. This simulation verifies that the logical functionality of the gate-level design matches the intended behavior described in the RTL (Register Transfer Level) design.
+Below are the commands used for Netlist generation(Logic Synthesis)
+
+```
+read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80_256.lib 
+read_verilog processor.v 
+synth -top wrapper
+dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80_256.lib 
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80_256.lib
+write_verilog synth_processor_test.v
+
+```
+
+command to run gls simulation
+
+```
+
+iverilog -o test synth_processor_test.v testbench.v sky130_sram_1kbyte_1rw1r_32x256_8.v sky130_fd_sc_hd.v primitives.v
+
+```
+
+
+<b>Highlighted the wrapper module after netlist created</b>
+<div>
+	<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/0c075205-0bcb-473a-a3cb-e173381875f9">
+</div>
+
+<b>GLS SImulation results</b>
+<div>
+	<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/543f6e48-8813-436e-9954-ab81501f26a5">
+</div>
 
 ## Word of Thanks
 
