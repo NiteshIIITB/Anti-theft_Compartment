@@ -271,6 +271,10 @@ iverilog -o test synth_processor_test.v testbench.v sky130_sram_1kbyte_1rw1r_32x
 	<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/543f6e48-8813-436e-9954-ab81501f26a5">
 </div>
 
+<div>
+	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/f48fef88-71dd-4c47-83bf-5c9e372e0734">
+</div>
+
 ## Word of Thanks
 
 I would like to sincerely thank Mr. Kunal Gosh, Founder of VSD (VLSI System Design), for his invaluable assistance and guidance, which played a pivotal role in ensuring the smooth completion of this project flow.
