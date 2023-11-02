@@ -286,4 +286,5 @@ I would like to sincerely thank Mr. Kunal Gosh, Founder of VSD (VLSI System Desi
 - [kunalg123 GitHub Profile](https://github.com/kunalg123)
 - [VSDIAT Official Website](https://www.vsdiat.com)
 - [RISCV-GNU GitHub Repository by Saketh Gajawada](https://github.com/SakethGajawada/RISCV-GNU)
+- [Mayank Kabra, Founder, Chipcron Pvt. Ltd.](https://www.tofler.in/mayank-kabra/director/10086358)
 
