@@ -275,6 +275,58 @@ iverilog -o test synth_processor_test.v testbench.v sky130_sram_1kbyte_1rw1r_32x
 	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/f48fef88-71dd-4c47-83bf-5c9e372e0734">
 </div>
 
+## Physical Design
+
+Physical design, in the context of integrated circuit (IC) design, is the process of transforming a logical design description into a physical representation that can be fabricated. This involves translating the high-level abstraction of the design into a detailed representation that includes the placement and routing of physical components on a semiconductor substrate.
+
+### 1. Floorplanning
+- Define the overall chip area and allocate space for different functional blocks.
+- Consider power grid planning, I/O placement, and chip boundary definition.
+
+### 2. Power Planning
+- Establish a power distribution network to ensure all components receive a stable and sufficient power supply.
+- Consider power grid topology, voltage drop, and current density.
+
+### 3. Placement
+- Positioning of logic cells and other components within the defined chip area.
+- Optimize for factors like signal delays, power consumption, and thermal considerations.
+- Utilize algorithms to achieve better performance and minimize wirelength.
+
+### 4. Clock Tree Synthesis (CTS)
+- Design and optimize the clock distribution network to ensure synchronous operation of the design.
+- Minimize skew and jitter in the clock signals.
+
+### 5. Routing
+- Establish the physical connections (metal traces) between the placed components.
+- Considerations include wirelength, signal integrity, and congestion.
+- Use detailed routing algorithms to generate efficient and manufacturable metal layers.
+
+### 6. Physical Verification
+- Check the design for adherence to design rules and constraints.
+- Includes checks for spacing, width, overlap, and other manufacturing constraints.
+- Ensure that the design meets the foundry's specifications.
+
+### 7. Extraction
+- Model the parasitic effects of interconnects (resistance, capacitance, etc.).
+- Extraction tools generate a more accurate representation of the circuit's behavior.
+
+### 8. Timing Analysis
+- Evaluate and optimize the timing characteristics of the design.
+- Check for setup and hold times, clock-to-q delays, and overall performance.
+- Iterative optimization may be required to meet timing constraints.
+
+### 9. Signal Integrity Analysis
+- Analyze and address issues related to signal quality, such as crosstalk and noise.
+- Ensure that signals reach their destinations with minimal distortion.
+
+### 10. Physical Testing and Debugging
+- Simulate and test the physical design to ensure functionality.
+- Debug and refine the design if necessary.
+
+
+
+
+
 ## Word of Thanks
 
 I would like to sincerely thank Mr. Kunal Gosh, Founder of VSD (VLSI System Design), for his invaluable assistance and guidance, which played a pivotal role in ensuring the smooth completion of this project flow.
