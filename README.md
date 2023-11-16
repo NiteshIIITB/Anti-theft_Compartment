@@ -399,6 +399,72 @@ magic -T /home/nitesh/Desktop/sky130A.tech lef read /home/nitesh/OpenLane/design
 ![Screenshot from 2023-11-16 15-11-34](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/b99cea0d-f55a-4c9d-83de-2c0ea9a38fe6)
 
 
+# Placement Stage in OpenLANE
+
+The placement stage in OpenLANE involves placing standard cells on floorplan rows, aligned with the sites defined in the technology LEF file. The placement is performed in two steps: Global Placement and Detailed Placement.
+
+- Global Placement: Global placement attempts to find an optimal position for all cells, even if they may initially overlap and not align with the rows defined in the floorplan. The optimization during global placement focuses on reducing half-parameter wire length.
+
+- Detailed Placement:  Detailed placement takes the result of global placement and legalizes the positions of cells, adhering to the preferences established during global placement. This step ensures that the final placement is both optimal and adheres to specific design rules.
+
+#### Running Placement:
+
+To run the placement process, use the following command:
+
+```
+run_placement
+```
+<div align="center">
+	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/bc90be8c-0676-4809-8981-a25cdb87d291">
+</div>
+
+- Post placement: the design can be viewed on magic within results/placement directory. Run the follwing command in that directory:
+
+  ```
+  magic -T /home/nitesh/Desktop/sky130A.tech lef read /home/nitesh/OpenLane/designs/processor_project/runs/RUN_2023.11.13_10.50.18/tmp/merged.nom.lef def read wrapper.def &
+
+  ```
+
+  <div align="center">
+	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/7241bc4a-1b29-4324-8b1a-48b3fbfb3cde">
+</div>
+
+## Clock Tree Synthesis (CTS) in OpenLANE
+
+Clock Tree Synthesis (CTS) is a crucial step in the OpenLANE ASIC flow, designed to create an optimized clock distribution network for delivering the clock to all sequential elements on the chip. The primary goal is to achieve minimal clock skew across the entire chip, and H-trees are commonly employed as a network topology to fulfill this objective.
+
+#### Purpose of CTS:
+
+The main purposes of building a clock tree are:
+- Enabling the clock input to reach every sequential element on the chip.
+- Ensuring zero clock skew, minimizing the time delay between different parts of the clock network.
+
+#### H-Tree Methodology:
+
+H-trees are a common methodology followed in CTS due to their effectiveness in minimizing skew. The H-tree structure involves a hierarchical distribution of the clock signal, branching out from a central point to cover different regions of the chip.
+
+#### Running CTS:
+
+To perform Clock Tree Synthesis in OpenLANE, use the following command:
+
+```
+run_cts
+```
+### Timing reports
+<div align="center">
+	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/50a9f6f4-b561-4cc3-990c-0a3bc18dc2a7">
+</div>
+
+### Area Report
+<div align="center">
+	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/9cf23d8c-1391-4e5e-a2df-99fcb5ca1b88">
+</div>
+
+### Power Report
+<div align="center">
+	<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/e60771fb-4833-4294-9548-05760dfa93c2">
+</div>
+
 ## Routing in OpenLANE
 
 Routing in OpenLANE involves implementing the interconnect system between standard cells using the remaining available metal layers after Clock Tree Synthesis (CTS) and Power Distribution Network (PDN) generation. The routing is performed on routing grids to ensure minimal Design Rule Check (DRC) errors.
