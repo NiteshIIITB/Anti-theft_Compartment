@@ -6868,7 +6868,7 @@ endmodule
 
         if(rst==1)
         begin 
-            writing_inst_done=1;
+            writing_inst_done=0;
             write_inst_count=0;
             instruction=0;
             inst_byte_count=0;
