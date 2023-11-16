@@ -323,7 +323,80 @@ Physical design, in the context of integrated circuit (IC) design, is the proces
 - Simulate and test the physical design to ensure functionality.
 - Debug and refine the design if necessary.
 
+## Synthesis
 
+Synthesis in EDA tools is primarly of two steps.
+- RTL is converted into a generic gate level netlist.
+- Technology mapping is done and generic level netlist is converted to standard netlist.
+  
+To synthesize the code run the following command
+
+```
+run_synthesis
+```
+
+![Screenshot from 2023-11-16 14-59-05](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/81449275-0579-4c17-8556-31cd7a816df9)
+
+
+#### Results after Synthesis
+![Screenshot from 2023-11-16 14-43-16](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/251df023-375e-4520-94a8-aac9e513534c)
+
+
+## Floorplan
+
+In the process of ASIC design, floorplanning is crucial for planning the silicon area and creating a robust Power Distribution Network (PDN). The floorplan defines the physical layout of the chip, including core utilization, aspect ratio, margins, and pin configurations. Additionally, it involves strategies such as creating power rings, power straps, macro placement, and blockages to ensure a legalized GDS file.
+
+### Floorplan Environment Variables:
+
+- **FP_CORE_UTIL**: Floorplan core utilization, specifying the percentage of the chip's core area that will be utilized.
+
+- **FP_ASPECT_RATIO**: Floorplan aspect ratio, defining the ratio of the chip's width to its height.
+
+- **FP_CORE_MARGIN**: Core to die margin area, specifying the margin between the core area and the chip boundary.
+
+- **FP_IO_MODE**: Defines pin configurations.
+  - 1: Equidistant pin configuration.
+  - 0: Non-equidistant pin configuration.
+
+- **FP_CORE_VMETAL**: Vertical metal layer for the core.
+
+- **FP_CORE_HMETAL**: Horizontal metal layer for the core.
+
+Note: Metal layer values are typically one more than specified in the file.
+
+### Power Planning Strategies:
+
+- **Power Rings**: Rings around the edges of the chip connected to the pads to distribute power uniformly.
+
+- **Power Straps**: Higher metal layers used to bring power to the middle of the chip, reducing IR drop and electro-migration problems.
+
+#### Floorplan Command:
+
+To run the floorplan using these environment variables and switches, use the following command:
+
+```
+run_floorplan
+```
+
+![Screenshot from 2023-11-16 15-00-13](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/4eec3176-b103-4d5a-a8ba-0ca30cfd239e)
+
+
+- Post the floorplan run, a .def file will have been created within the results/floorplan directory. We may review floorplan files by checking the floorplan.tcl.
+- To view the floorplan: Magic is invoked after moving to the results/floorplan directory,then use the floowing command:
+
+```
+magic -T /home/nitesh/Desktop/sky130A.tech lef read /home/nitesh/OpenLane/designs/processor_project/runs/RUN_2023.11.13_10.50.18/tmp/merged.nom.lef def read wrapper.def &
+
+```
+
+![floorplan_magic](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/52491279-4a20-405f-874d-5f21d08209a3)
+
+
+#### Core area(post floorplan)
+![Screenshot from 2023-11-16 15-09-48](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/995ac3dc-697b-4336-a317-b7db15bde205)
+
+#### Die area(post floorplan)
+![Screenshot from 2023-11-16 15-11-34](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/b99cea0d-f55a-4c9d-83de-2c0ea9a38fe6)
 
 
 
