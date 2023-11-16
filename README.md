@@ -399,7 +399,96 @@ magic -T /home/nitesh/Desktop/sky130A.tech lef read /home/nitesh/OpenLane/design
 ![Screenshot from 2023-11-16 15-11-34](https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/b99cea0d-f55a-4c9d-83de-2c0ea9a38fe6)
 
 
+## Routing in OpenLANE
 
+Routing in OpenLANE involves implementing the interconnect system between standard cells using the remaining available metal layers after Clock Tree Synthesis (CTS) and Power Distribution Network (PDN) generation. The routing is performed on routing grids to ensure minimal Design Rule Check (DRC) errors.
+
+OpenLANE utilizes the TritonRoute tool for routing, and the process consists of two stages:
+
+#### Global Routing:
+Global routing divides the routing region into rectangular grids, represented as coarse 3D routes using the Fastroute tool.
+
+#### Detailed Routing:
+Detailed routing uses finer grids and routing guides to implement the physical wiring. TritonRoute, another tool in the OpenLANE flow, is responsible for this stage.
+
+#### Features of TritonRoute:
+- Honoring pre-processed route guides.
+- Assumes that each net satisfies inter-guide connectivity.
+- Utilizes a Mixed-Integer Linear Programming (MILP) based panel routing scheme.
+- Employs an intra-layer parallel and inter-layer sequential routing framework.
+
+#### Running Routing in OpenLANE:
+
+To run the routing process, use the following command:
+
+```
+ run_routing
+```
+
+- Layout in magic tool post routing: the design can be viewed on magic within results/routing directory. Run the follwing command in that directory:
+
+  ```
+  magic -T /home/nitesh/Desktop/sky130A.tech lef read /home/nitesh/OpenLane/designs/processor_project/runs/RUN_2023.11.13_10.50.18/tmp/merged.nom.lef def read wrapper.def &
+
+  ```
+ ### Layout after Routing 
+<div align="center">  
+	
+<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/f658634c-b3d1-48d1-9d32-054cd4b8ed4f">
+<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/0dbe3c4a-5558-48f9-bb56-d8ab5cc96c20">
+
+</div>
+
+### Post Routing Timing report
+<div align="center">
+<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/34735f23-33de-41ac-a068-7216b47759db">
+</div>
+
+
+
+### Post Routing Area report
+<div align="center">
+<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/ce3a4b9b-d387-44e9-af7b-57493b6a124e">
+</div>
+
+
+### Post Routing Power report
+<div align="center">
+<img src="https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/72651832-c62e-47e0-894e-d36aa8088b14">
+</div>
+
+
+## Performance calculation
+- Clock period : 100ns
+- setup slack  : 28.33ns
+
+```
+                              1
+Max Performance =  ------------------------    = 13.95 MHz
+                     clock period - slack(setup)
+```
+
+## Summary of Commands
+
+```
+cd Desktop/OpenLane/ 
+
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design project
+run_synthesis
+run_floorplan
+run_placement
+run_cts
+gen_pdn
+run_routing
+run_magic
+run_magic_spice_export
+run_magic_drc
+run_antenna_check
+
+
+```
 ## Word of Thanks
 
 I would like to sincerely thank Mr. Kunal Gosh, Founder of VSD (VLSI System Design), for his invaluable assistance and guidance, which played a pivotal role in ensuring the smooth completion of this project flow.
