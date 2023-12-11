@@ -193,6 +193,13 @@ int main()  {
 
 
 ```
+### Spike Commands
+
+```
+riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out water_level.c
+spike pk out
+
+```
 
 ### Spike output
 When input is 1 to temp_sensor.
