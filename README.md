@@ -141,14 +141,14 @@ spike pk out
 ```
 
 ### Spike output
-When input is 1 to temp_sensor.
+When input is 1 to light_sensor.
 <div>
 	<img src= https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/2e9871ac-6e0a-4698-aaff-55c275c66bfe>
 
 </div>
 
 <br>
-When input is 1 to temp_sensor.
+When input is 0 to light_sensor.
 <div>
 	<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/e82aa641-7bac-478f-a171-662f50569bf3">
 
