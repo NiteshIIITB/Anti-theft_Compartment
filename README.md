@@ -78,73 +78,6 @@ int main()  {
 
 
 
-<h2>Assembly Code</h2>
-
-### Assembly Code conversion Commands
-
-```
-riscv64-unknown-elf-gcc -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -o ./out water_level.c
-riscv64-unknown-elf-objdump -d  -r out > water_level_assembly.txt
-
-```
-
-```
-
-out:     file format elf32-littleriscv
-
-
-Disassembly of section .text:
-
-00010054 <main>:
-   10054:	fe010113          	addi	sp,sp,-32
-   10058:	00812e23          	sw	s0,28(sp)
-   1005c:	02010413          	addi	s0,sp,32
-   10060:	001f7793          	andi	a5,t5,1
-   10064:	fef42623          	sw	a5,-20(s0)
-   10068:	fec42783          	lw	a5,-20(s0)
-   1006c:	02078263          	beqz	a5,10090 <main+0x3c>
-   10070:	ffd00793          	li	a5,-3
-   10074:	fef42423          	sw	a5,-24(s0)
-   10078:	fe842783          	lw	a5,-24(s0)
-   1007c:	00ff7f33          	and	t5,t5,a5
-   10080:	002f6f13          	ori	t5,t5,2
-   10084:	002f7793          	andi	a5,t5,2
-   10088:	fef42223          	sw	a5,-28(s0)
-   1008c:	01c0006f          	j	100a8 <main+0x54>
-   10090:	ffd00793          	li	a5,-3
-   10094:	fef42423          	sw	a5,-24(s0)
-   10098:	fe842783          	lw	a5,-24(s0)
-   1009c:	00ff7f33          	and	t5,t5,a5
-   100a0:	002f7793          	andi	a5,t5,2
-   100a4:	fef42223          	sw	a5,-28(s0)
-   100a8:	00000793          	li	a5,0
-   100ac:	00078513          	mv	a0,a5
-   100b0:	01c12403          	lw	s0,28(sp)
-   100b4:	02010113          	addi	sp,sp,32
-   100b8:	00008067          	ret
-
-```
-
-<h2>Instructions</h2>
-
-```
-Number of different instructions: 11
-List of unique instructions:
-lw
-mv
-li
-ori
-j
-and
-beqz
-ret
-andi
-addi
-sw
-
-
-```
-
 ## Spike Simulation
 ### Modified C code
 
@@ -220,6 +153,75 @@ When input is 1 to temp_sensor.
 	<img src= "https://github.com/NiteshVLSI/Anti-theft_Compartment/assets/140998787/e82aa641-7bac-478f-a171-662f50569bf3">
 
 </div>
+
+
+
+<h2>Assembly Code</h2>
+
+### Assembly Code conversion Commands
+
+```
+riscv64-unknown-elf-gcc -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -o ./out water_level.c
+riscv64-unknown-elf-objdump -d  -r out > water_level_assembly.txt
+
+```
+
+```
+
+out:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00010054 <main>:
+   10054:	fe010113          	addi	sp,sp,-32
+   10058:	00812e23          	sw	s0,28(sp)
+   1005c:	02010413          	addi	s0,sp,32
+   10060:	001f7793          	andi	a5,t5,1
+   10064:	fef42623          	sw	a5,-20(s0)
+   10068:	fec42783          	lw	a5,-20(s0)
+   1006c:	02078263          	beqz	a5,10090 <main+0x3c>
+   10070:	ffd00793          	li	a5,-3
+   10074:	fef42423          	sw	a5,-24(s0)
+   10078:	fe842783          	lw	a5,-24(s0)
+   1007c:	00ff7f33          	and	t5,t5,a5
+   10080:	002f6f13          	ori	t5,t5,2
+   10084:	002f7793          	andi	a5,t5,2
+   10088:	fef42223          	sw	a5,-28(s0)
+   1008c:	01c0006f          	j	100a8 <main+0x54>
+   10090:	ffd00793          	li	a5,-3
+   10094:	fef42423          	sw	a5,-24(s0)
+   10098:	fe842783          	lw	a5,-24(s0)
+   1009c:	00ff7f33          	and	t5,t5,a5
+   100a0:	002f7793          	andi	a5,t5,2
+   100a4:	fef42223          	sw	a5,-28(s0)
+   100a8:	00000793          	li	a5,0
+   100ac:	00078513          	mv	a0,a5
+   100b0:	01c12403          	lw	s0,28(sp)
+   100b4:	02010113          	addi	sp,sp,32
+   100b8:	00008067          	ret
+
+```
+
+<h2>Instructions</h2>
+
+```
+Number of different instructions: 11
+List of unique instructions:
+lw
+mv
+li
+ori
+j
+and
+beqz
+ret
+andi
+addi
+sw
+
+
+```
 
 ## Functional Verification
 <div>
